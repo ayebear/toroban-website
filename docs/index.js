@@ -6,7 +6,3 @@ function fancyPrint(text, size, color) {
 }
 
 fancyPrint('Toroban', '60px', '#ABC')
-fancyPrint('Super Secret Demo', '30px', '#ABC')
-console.log(
-	'Click here to play: https://toroban.com/super_secret_demo/\n\n\u26a0\ufe0f Note that this is an early prototype, and is not representative of what is planned for the official release. \u26a0\ufe0f\n'
-)
