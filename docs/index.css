@@ -34,3 +34,7 @@ html {
 		width: 1000px;
 	}
 }
+
+ul {
+	list-style-type: none;
+}
