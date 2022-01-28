@@ -47,19 +47,19 @@ ul {
 	fill: #aaa;
 }
 
-a {
+.smlink {
 	outline: none;
 	border: 0;
 	text-decoration: none;
 }
 
-a svg #down {
+.smlink svg #down {
 	transition: 100ms;
 	transition-timing-function: ease-in-out;
 	-webkit-transition: 100ms;
 	-webkit-transition-timing-function: ease-in-out;
 }
 
-a svg:hover #down {
+.smlink svg:hover #down {
 	fill: #fff;
 }
