@@ -38,3 +38,28 @@ html {
 ul {
 	list-style-type: none;
 }
+
+/* Social media icons css */
+.smicon {
+	padding: 0px 16px;
+	width: 64px;
+	height: 64px;
+	fill: #aaa;
+}
+
+a {
+	outline: none;
+	border: 0;
+	text-decoration: none;
+}
+
+a svg #down {
+	transition: 100ms;
+	transition-timing-function: ease-in-out;
+	-webkit-transition: 100ms;
+	-webkit-transition-timing-function: ease-in-out;
+}
+
+a svg:hover #down {
+	fill: #fff;
+}
