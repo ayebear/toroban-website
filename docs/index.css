@@ -25,6 +25,14 @@ html {
 	.main {
 		width: 100%;
 	}
+	.icons-container {
+		width: 100%;
+		height: 64px;
+	}
+	.smicon {
+		max-width: 13%;
+		height: auto;
+	}
 }
 @media screen and (min-width: 1000px) {
 	html {
@@ -32,6 +40,10 @@ html {
 	}
 	.main {
 		width: 1000px;
+	}
+	.smicon {
+		width: 64px;
+		height: 64px;
 	}
 }
 
@@ -42,8 +54,6 @@ ul {
 /* Social media icons css */
 .smicon {
 	padding: 0px 16px;
-	width: 64px;
-	height: 64px;
 	fill: #aaa;
 }
 
