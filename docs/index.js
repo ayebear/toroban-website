@@ -5,4 +5,12 @@ function fancyPrint(text, size, color) {
 	)
 }
 
+function updateCopyrightYear() {
+	const year = new Date().getFullYear()
+	if (year >= 2022) {
+		document.getElementById('copyright-year').innerHTML = year
+	}
+}
+
 fancyPrint('Toroban', '60px', '#ABC')
+updateCopyrightYear()
