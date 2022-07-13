@@ -93,8 +93,7 @@ footer {
 	padding: 20px;
 	background-color: #3f3f3f;
 	border-radius: 20px;
-	width: calc(30% - 50px);
-	min-width: 300px;
+	width: 400px;
 	display: block;
 	text-align: left;
 
@@ -171,12 +170,6 @@ footer {
 	.copyright {
 		font-size: calc(8px + 8 * ((100vw - 320px) / 680));
 	}
-	.card-container {
-		width: 100%;
-	}
-	.card {
-		min-width: calc((1000px) / 2 - 100px);
-	}
 }
 @media screen and (min-width: 1000px) {
 	html {
@@ -203,12 +196,5 @@ footer {
 		fill: #e4e4e4;
 		width: 100px;
 		height: auto;
-	}
-	.card-container {
-		padding: 0;
-		width: 100%;
-	}
-	.card {
-		min-width: calc((1000px) / 2 - 100px);
 	}
 }
