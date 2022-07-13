@@ -4,76 +4,94 @@
 		<title>Toroban Demos</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="theme-color" content="#000000" />
-		<link rel="stylesheet" type="text/css" href="demos.css" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Patrick+Hand+SC&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
-
 	<body>
-		<div class="main">
-			<h3>
-				<a href="/">Home</a>
-			</h3>
-			<h1>Toroban Demos</h1>
-			<br />
-			<h2>Demo 4</h2>
-			<p>????</p>
-			<p>
-				Coming soon to Steam! This will be released along with the full
-				game as a way to try part 1 of the tutorial for free.
-			</p>
-			<br />
-			<h2>Demo 3</h2>
-			<p>2021-03-05</p>
-			<p>
-				Multiple characters with unlocked movement, and reverted rule
-				blocks - kept more of the traditional mechanics such as
-				switches/gates, lasers, and mirrors. Other mechanics tweaks with
-				the aim to be more intuitive. 56 fully solvable levels
-				showcasing many of the mechanics that could make it into the
-				final game.
-			</p>
-			<p><a href="https://toroban.com/demo3/">Play here</a></p>
-			<br />
-			<h2>Demo 2</h2>
-			<p>2020-06-24</p>
-			<p>
-				After some feedback was received from Demo 1, I made many
-				changes, fixes, and design improvements. Players are no longer
-				killed by water and light (maybe some future things like spikes
-				will do this). Players were also redesigned to replace mirrors
-				and wall blocks. Players can swim in water, and are able to push
-				sand, allowing for lots of interesting and intuitive edge cases
-				and mechanics.
-			</p>
-			<p><a href="https://toroban.com/demo2/">Play here</a></p>
-			<br />
-			<h2>Demo 1</h2>
-			<p>2020-04-14</p>
-			<p>
-				A new take on replacing life points. This version changes the
-				concept of the player into a standard game entity, allowing for
-				any number of players. Players have a color state. Added
-				sand/water as the new terrains. Water and light "kill" players,
-				turning them into ghosts. Ghosts can only interact with other
-				ghosts. The other significant change in this version were the
-				dynamic rule blocks. Whenever a rule block is hit with a beam of
-				light, it changes the rules of all entities with the same color.
-			</p>
-			<p><a href="https://toroban.com/demo/">Play here</a></p>
-			<br />
-			<h2>Demo 0</h2>
-			<p>2019-11-04</p>
-			<p>
-				Formerly known as "super secret demo". Features life points,
-				colors, light beams, and bidirectional time travel. Condensed
-				down the levels to just the more difficult and interesting ones.
-				Breakthroughs were made with time travel, and it was working so
-				well compared to the previous version of the game. I was finally
-				able to continue making time travel levels. The four user inputs
-				were introduced: undo/redo, rewind/un-rewind.
-			</p>
-			<p>
-				<a href="https://toroban.com/super_secret_demo/">Play here</a>
-			</p>
+		<header>
+			<a href="index.html">Home</a>
+			<!-- Sun icons created by Freepik - Flaticon -->
+			<!-- <input type="image" src="brightness.png" class="mode" /> -->
+		</header>
+		<h4><u>Toroban Demos</u></h4>
+		<div class="card-container">
+			<div class="card">
+				<h2>Demo 4 <span class="align-right">????-??-??</span></h2>
+				<p>
+					Coming soon to Steam! This will be released along with the
+					full game as a way to try part 1 of the tutorial for free.
+				</p>
+			</div>
+			<div class="card">
+				<h2>Demo 3 <span class="align-right">2021-03-05</span></h2>
+				<p>
+					Multiple characters with unlocked movement, and reverted
+					rule blocks - kept more of the traditional mechanics such as
+					switches/gates, lasers, and mirrors. Other mechanics tweaks
+					with the aim to be more intuitive. 56 fully solvable levels
+					showcasing many of the mechanics that could make it into the
+					final game.
+				</p>
+				<p class="card-link">
+					<a href="https://toroban.com/demo3/">Play here</a>
+				</p>
+			</div>
+			<div class="card">
+				<h2>Demo 2 <span class="align-right">2020-06-24</span></h2>
+				<p>
+					After some feedback was received from Demo 1, I made many
+					changes, fixes, and design improvements. Players are no
+					longer killed by water and light (maybe some future things
+					like spikes will do this). Players were also redesigned to
+					replace mirrors and wall blocks. Players can swim in water,
+					and are able to push sand, allowing for lots of interesting
+					and intuitive edge cases and mechanics.
+				</p>
+				<p class="card-link">
+					<a href="https://toroban.com/demo2/">Play here</a>
+				</p>
+			</div>
+			<div class="card">
+				<h2>Demo 1 <span class="align-right">2020-04-14</span></h2>
+				<p>
+					A new take on replacing life points. This version changes
+					the concept of the player into a standard game entity,
+					allowing for any number of players. Players have a color
+					state. Added sand/water as the new terrains. Water and light
+					"kill" players, turning them into ghosts. Ghosts can only
+					interact with other ghosts. The other significant change in
+					this version were the dynamic rule blocks. Whenever a rule
+					block is hit with a beam of light, it changes the rules of
+					all entities with the same color.
+				</p>
+				<p class="card-link">
+					<a href="https://toroban.com/demo/">Play here</a>
+				</p>
+			</div>
+			<div class="card">
+				<h2>Demo 0 <span class="align-right">2019-11-04</span></h2>
+				<p>
+					Formerly known as "super secret demo". Features life points,
+					colors, light beams, and bidirectional time travel.
+					Condensed down the levels to just the more difficult and
+					interesting ones. Breakthroughs were made with time travel,
+					and it was working so well compared to the previous version
+					of the game. I was finally able to continue making time
+					travel levels. The four user inputs were introduced:
+					undo/redo, rewind/un-rewind.
+				</p>
+				<p class="card-link">
+					<a href="https://toroban.com/super_secret_demo/"
+						>Play here</a
+					>
+				</p>
+			</div>
 		</div>
+		<footer>© 2019-2022 Hebert Games LLC</footer>
 	</body>
 </html>
