@@ -70,6 +70,7 @@ footer {
 	display: block;
 	margin: auto;
 	margin-top: 1rem;
+	padding-bottom: 4rem;
 	text-align: center;
 	height: fit-content;
 }
@@ -166,6 +167,11 @@ footer {
 	}
 	.main {
 		width: 100%;
+	}
+	.trailer {
+		height: auto;
+		width: 100%;
+		aspect-ratio: 16 / 9;
 	}
 	.copyright {
 		font-size: calc(8px + 8 * ((100vw - 320px) / 680));
