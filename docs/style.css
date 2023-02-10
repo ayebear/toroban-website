@@ -71,7 +71,8 @@ footer {
 	margin-top: 1rem;
 	padding-bottom: 4rem;
 	text-align: center;
-	height: fit-content;
+		width: 100%;
+		height: fit-content;
 }
 
 .card-container {
@@ -110,10 +111,12 @@ footer {
 	font-size: 24px;
 }
 
+.game-title-container {
+	padding: 0.5rem 1.5rem;
+}
+
 .game-title {
-	/* background-color: #595959; */
-	width: 100vw;
-	height: auto;
+	width: 100%;
 }
 
 .icons-container {
@@ -154,34 +157,31 @@ footer {
 	fill: #fff;
 }
 
-@media screen and (min-width: 320px) {
-	.main {
-		width: 100%;
-	}
+.copyright {
+	font-size: 16px;
+}
+
+/* Small screens */
+@media screen and (min-width: 0px) {
 	.trailer {
 		height: auto;
 		width: 100%;
 		aspect-ratio: 16 / 9;
 	}
-	.copyright {
-		font-size: calc(8px + 8 * ((100vw - 320px) / 680));
-	}
 }
+
+/* Large screens */
 @media screen and (min-width: 1000px) {
 	.main {
 		width: 1000px;
-	}
-	.copyright {
-		font-size: 16px;
-	}
-	.game-title {
-		width: 100%;
-		height: auto;
 	}
 	.smicon {
 		padding: 8px 8px;
 		fill: #e4e4e4;
 		width: 100px;
 		height: auto;
+	}
+	.game-title-container {
+		padding: 2rem 6rem;
 	}
 }
