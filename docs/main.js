@@ -5,6 +5,7 @@ function fancyPrint(text, size, color) {
 	)
 }
 
+// Maybe this wasn't working on all browsers?
 // function updateCopyrightYear() {
 // 	const year = new Date().getFullYear()
 // 	if (year >= 2022) {
@@ -13,4 +14,5 @@ function fancyPrint(text, size, color) {
 // }
 
 fancyPrint('Toroban', '60px', '#ABC')
+console.log('Play very old demos here: https://toroban.com/demos.html')
 // updateCopyrightYear()
