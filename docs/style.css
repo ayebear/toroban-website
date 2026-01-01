@@ -189,3 +189,8 @@ footer {
 .steam-buy {
 	padding-top: 16px;
 }
+
+.steam-buy iframe {
+	width: 100%;
+	max-width: 646px;
+}
