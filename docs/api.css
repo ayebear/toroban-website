@@ -1,0 +1,25 @@
+html,
+body {
+	overflow: initial;
+	margin: initial;
+	text-align: initial;
+	align-items: initial;
+	justify-content: initial;
+	width: initial;
+	height: initial;
+	bottom: initial;
+}
+
+.content {
+	padding: 0 1rem 5rem 1rem;
+}
+
+table {
+	font-family: 'ABeeZee';
+	border-collapse: collapse;
+}
+
+td,
+th {
+	border: 1px solid #ddd;
+}

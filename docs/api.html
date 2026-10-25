@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Toroban API Docs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#000000" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="api.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Patrick+Hand+SC&display=swap"
+		rel="stylesheet" />
+</head>
+
+<body>
+	<div class="content">
+		<header>
+			<a href="index.html">Home</a>
+		</header>
+		<h1><u>Toroban API Docs</u></h1>
+		<p>Some quick docs on file formats used in Toroban.</p>
+		<h2>Game Saves (.bin)</h2>
+		<p>The .bin files are zstd compressed, "Cereal" binary serialized files. Cereal is an internal-only binary
+			format
+			with backwards-compatible, nestable versioning in Rust, not yet
+			open sourced. They store both a full copy of the original world, as well as the current world state, and all
+			of
+			the command history for undo/redo.</p>
+		<h2>World Image (.png)</h2>
+		<p>A PNG format where each tile is represented by the lower bits of a cluster of pixels. Upper bits are mostly
+			ignored, but some are used for basic version metadata. It is tricky encoding and decoding, so prefer to use
+			WorldText below for any kind of programmatic manipulation of Toroban worlds.</p>
+		<h2>World Text (.txt)</h2>
+		<p>Very simple format, where each line represents a tile in left to right and down order. Data can be repeated
+			using
+			a simple
+			RLE (run-length encoding). Each tile contains all of the terrain (parallel worlds), objects, and modifiers,
+			separated by semicolons (;).</p>
+		<h3>Mapping Table</h3>
+		<table class="mapping">
+			<thead>
+				<tr>
+					<th>Char</th>
+					<th>Title</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>A</td>
+					<td>Title block A</td>
+				</tr>
+				<tr>
+					<td>B</td>
+					<td>Title block B</td>
+				</tr>
+				<tr>
+					<td>C</td>
+					<td>Connection block</td>
+				</tr>
+				<tr>
+					<td>D</td>
+					<td>Basic block</td>
+				</tr>
+				<tr>
+					<td>E</td>
+					<td>Toro</td>
+				</tr>
+				<tr>
+					<td>F</td>
+					<td>Fog</td>
+				</tr>
+				<tr>
+					<td>G</td>
+					<td>Toro goal</td>
+				</tr>
+				<tr>
+					<td>H</td>
+					<td>Hazard land</td>
+				</tr>
+				<tr>
+					<td>I</td>
+					<td>Info</td>
+				</tr>
+				<tr>
+					<td>K</td>
+					<td>Checkpoint</td>
+				</tr>
+				<tr>
+					<td>L</td>
+					<td>Land</td>
+				</tr>
+				<tr>
+					<td>M</td>
+					<td>Mysterious</td>
+				</tr>
+				<tr>
+					<td>N</td>
+					<td>Title block N</td>
+				</tr>
+				<tr>
+					<td>O</td>
+					<td>Title block O1</td>
+				</tr>
+				<tr>
+					<td>P</td>
+					<td>Portal</td>
+				</tr>
+				<tr>
+					<td>Q</td>
+					<td>Region button</td>
+				</tr>
+				<tr>
+					<td>R</td>
+					<td>Title block R</td>
+				</tr>
+				<tr>
+					<td>S</td>
+					<td>Region gate</td>
+				</tr>
+				<tr>
+					<td>T</td>
+					<td>Title block T</td>
+				</tr>
+				<tr>
+					<td>U</td>
+					<td>Region block NW</td>
+				</tr>
+				<tr>
+					<td>V</td>
+					<td>Region block SE</td>
+				</tr>
+				<tr>
+					<td>W</td>
+					<td>Wall</td>
+				</tr>
+				<tr>
+					<td>X</td>
+					<td>X offset block</td>
+				</tr>
+				<tr>
+					<td>Y</td>
+					<td>Y offset block</td>
+				</tr>
+				<tr>
+					<td>Z</td>
+					<td>Thick fog</td>
+				</tr>
+				<tr>
+					<td>0</td>
+					<td>Title block O0</td>
+				</tr>
+				<tr>
+					<td>-</td>
+					<td>Color gate</td>
+				</tr>
+				<tr>
+					<td>,</td>
+					<td>Reserved: parameters</td>
+				</tr>
+				<tr>
+					<td>;</td>
+					<td>Reserved: token delim</td>
+				</tr>
+				<tr>
+					<td>:</td>
+					<td>Reserved: repeat delim</td>
+				</tr>
+				<tr>
+					<td>!</td>
+					<td>Stuck detector</td>
+				</tr>
+				<tr>
+					<td>?</td>
+					<td>Sign</td>
+				</tr>
+				<tr>
+					<td>'</td>
+					<td>Arrow hint</td>
+				</tr>
+				<tr>
+					<td>"</td>
+					<td>Arrow hint long</td>
+				</tr>
+				<tr>
+					<td>&lpar;</td>
+					<td>Collider</td>
+				</tr>
+				<tr>
+					<td>#</td>
+					<td>Reserved: header/comment</td>
+				</tr>
+				<tr>
+					<td>%</td>
+					<td>Diverged terrain</td>
+				</tr>
+				<tr>
+					<td>^</td>
+					<td>Compass</td>
+				</tr>
+				<tr>
+					<td>+</td>
+					<td>Color button</td>
+				</tr>
+				<tr>
+					<td>=</td>
+					<td>Counting gate</td>
+				</tr>
+				<tr>
+					<td>&gt;</td>
+					<td>Reserved: repeat</td>
+				</tr>
+				<tr>
+					<td>~</td>
+					<td>Water</td>
+				</tr>
+				<tr>
+					<td>$</td>
+					<td>$$$</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer>© 2019-2026 Hebert Games LLC</footer>
+</body>
+
+</html>
