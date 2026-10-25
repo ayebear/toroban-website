@@ -18,15 +18,19 @@
 		<a href="index.html">Home</a>
 	</header>
 	<h1><u>Toroban API Docs</u></h1>
-	<p>Some quick docs on file formats used in Toroban. The .bin files are zstd compressed, "Cereal" binary serialized
-		files. Cereal is an internal-only binary format with backwards-compatible, nestable versioning in Rust, not yet
-		open sourced.</p>
-	<h2>WorldImage</h2>
+	<p>Some quick docs on file formats used in Toroban.</p>
+	<h2>Game Saves (.bin)</h2>
+	<p>The .bin files are zstd compressed, "Cereal" binary serialized files. Cereal is an internal-only binary format
+		with backwards-compatible, nestable versioning in Rust, not yet
+		open sourced. They store both a full copy of the original world, as well as the current world state, and all of
+		the command history for undo/redo.</p>
+	<h2>World Image (.png)</h2>
 	<p>A PNG format where each tile is represented by the lower bits of a cluster of pixels. Upper bits are mostly
-		ignored, but some might be used for basic version metadata. It is tricky encoding and decoding, so prefer to use
+		ignored, but some are used for basic version metadata. It is tricky encoding and decoding, so prefer to use
 		WorldText below for any kind of programmatic manipulation of Toroban worlds.</p>
-	<h2>WorldText</h2>
-	<p>Very simple format, where each line represents a tile in left to right order. Data can be repeated using a simple
+	<h2>World Text (.txt)</h2>
+	<p>Very simple format, where each line represents a tile in left to right and down order. Data can be repeated using
+		a simple
 		RLE (run-length encoding). Each tile contains all of the terrain (parallel worlds), objects, and modifiers,
 		separated by semicolons (;).</p>
 	<h3>Mapping Table</h3>
