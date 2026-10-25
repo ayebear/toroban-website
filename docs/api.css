@@ -10,6 +10,10 @@ body {
 	bottom: initial;
 }
 
+.content {
+	padding: 0 1rem 5rem 1rem;
+}
+
 table {
 	font-family: 'ABeeZee';
 	border-collapse: collapse;
