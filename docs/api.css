@@ -8,5 +8,14 @@ body {
 	width: initial;
 	height: initial;
 	bottom: initial;
-	padding: initial;
+}
+
+table {
+	font-family: 'ABeeZee';
+	border-collapse: collapse;
+}
+
+td,
+th {
+	border: 1px solid #ddd;
 }
