@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Toroban API Docs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#000000" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="api.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Patrick+Hand+SC&display=swap"
+		rel="stylesheet" />
+</head>
+
+<body>
+	<header>
+		<a href="index.html">Home</a>
+	</header>
+	<h1><u>Toroban API Docs</u></h1>
+	<p>Some quick docs on file formats used in Toroban. The .bin files are zstd compressed, "Cereal" binary serialized
+		files. Cereal is an internal-only binary format with backwards-compatible, nestable versioning in Rust, not yet
+		open sourced.</p>
+	<h2>WorldImage</h2>
+	<p>A PNG format where each tile is represented by the lower bits of a cluster of pixels. Upper bits are mostly
+		ignored, but some might be used for basic version metadata. It is tricky encoding and decoding, so prefer to use
+		WorldText below for any kind of programmatic manipulation of Toroban worlds.</p>
+	<h2>WorldText</h2>
+	<p>Very simple format, where each line represents a tile in left to right order. Data can be repeated using a simple
+		RLE (run-length encoding). Each tile contains all of the terrain (parallel worlds), objects, and modifiers,
+		separated by semicolons (;).</p>
+	<h3>Mapping Table</h3>
+	<p>TODO</p>
+	<footer>© 2019-2026 Hebert Games LLC</footer>
+</body>
+
+</html>
