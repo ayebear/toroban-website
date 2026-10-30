@@ -15,6 +15,8 @@ body {
 }
 
 table {
+	display: block;
+	overflow-x: auto;
 	font-family: 'ABeeZee';
 	border-collapse: collapse;
 }
@@ -22,4 +24,160 @@ table {
 td,
 th {
 	border: 1px solid #ddd;
+	padding: 0.4rem;
+	text-align: left;
+	vertical-align: top;
+}
+
+td code {
+	white-space: nowrap;
+}
+
+#toggle-params {
+	margin-bottom: 0.75rem;
+	padding: 0.4rem 0.65rem;
+	border: 1px solid #ddd;
+	background: transparent;
+	color: inherit;
+	font-family: 'ABeeZee';
+	cursor: pointer;
+}
+
+.param-toggle {
+	padding: 0;
+	border: 0;
+	background: transparent;
+	font: inherit;
+	text-decoration: underline dotted;
+	cursor: pointer;
+}
+
+.param-toggle[aria-expanded="true"] {
+	text-decoration-style: solid;
+}
+
+.param-detail {
+	max-width: 26rem;
+	margin-top: 0.5rem;
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+.param-toggle.param-color,
+.param-color>code {
+	background: linear-gradient(90deg, #ff7a7a, #ffb866, #f3df70, #7bdd6f, #66e7ef, #81bdff, #c4a7ff, #ef8aff);
+	background-clip: text;
+	color: transparent;
+	text-decoration-color: #ddd;
+}
+
+.color-black {
+	color: #000;
+	background-color: #ddd;
+}
+
+.color-blue {
+	color: #81bdff;
+}
+
+.color-green {
+	color: #7bdd6f;
+}
+
+.color-cyan {
+	color: #66e7ef;
+}
+
+.color-red {
+	color: #ff7a7a;
+}
+
+.color-magenta {
+	color: #ef8aff;
+}
+
+.color-yellow {
+	color: #f3df70;
+}
+
+.color-white {
+	color: #fff;
+}
+
+.param-eyes {
+	color: #ffab70;
+}
+
+.param-player {
+	color: #c4a7ff;
+}
+
+.param-kind {
+	color: #f5a0d0;
+}
+
+.param-biome {
+	color: #a5d875;
+}
+
+.param-camera {
+	color: #66dcca;
+}
+
+.param-ray {
+	color: #81bdff;
+}
+
+.param-id {
+	color: #ff8e9c;
+}
+
+.param-main {
+	color: #b4d5e8;
+}
+
+.param-alt {
+	color: #dfc4ff;
+}
+
+.param-count {
+	color: #d6e779;
+}
+
+.param-data {
+	color: #e7c2a5;
+}
+
+.title-word {
+	display: inline-block;
+	padding: 1em 0;
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.title-letter {
+	position: relative;
+	text-decoration: underline;
+}
+
+.title-letter::before,
+.title-letter::after {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	font-weight: normal;
+}
+
+.title-letter::before {
+	content: "\2193";
+	top: -1em;
+}
+
+.title-letter::after {
+	content: "\2191";
+	bottom: -1em;
+}
+
+footer {
+	text-align: center;
 }

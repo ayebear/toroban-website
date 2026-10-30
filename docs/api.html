@@ -21,207 +21,502 @@
 		<h1><u>Toroban API Docs</u></h1>
 		<p>Some quick docs on file formats used in Toroban.</p>
 		<h2>Game Saves (.bin)</h2>
-		<p>The .bin files are zstd compressed, "Cereal" binary serialized files. Cereal is an internal-only binary
-			format
-			with backwards-compatible, nestable versioning in Rust, not yet
-			open sourced. They store both a full copy of the original world, as well as the current world state, and all
-			of
-			the command history for undo/redo.</p>
+		<p>A zstd compressed, binary format that stores the original world, current world, and full command history.</p>
 		<h2>World Image (.png)</h2>
 		<p>A PNG format where each tile is represented by the lower bits of a cluster of pixels. Upper bits are mostly
-			ignored, but some are used for basic version metadata. It is tricky encoding and decoding, so prefer to use
-			WorldText below for any kind of programmatic manipulation of Toroban worlds.</p>
+			ignored, but some are used for basic version metadata. It is somewhat complicated to encode and decode, so
+			you may prefer to use the simpler WorldText format below for any kind of programmatic manipulation of
+			Toroban worlds.</p>
 		<h2>World Text (.txt)</h2>
-		<p>Very simple format, where each line represents a tile in left to right and down order. Data can be repeated
-			using
-			a simple
-			RLE (run-length encoding). Each tile contains all of the terrain (parallel worlds), objects, and modifiers,
-			separated by semicolons (;).</p>
+		<p>A TXT format where each line represents a tile in left to right and down order. Data can be optionally
+			repeated using an RLE (run-length encoding) to reduce file size. Each tile contains all of the terrain
+			(parallel worlds), objects, and modifiers, separated by semicolons (;).</p>
+		<h3>Example</h3>
+		<p>This is the default 16x16 starting world in the editor, with grass land and a white 1-eye toro:</p>
+		<pre><code># Toroban WorldText v0
+size=16,16
+&gt;119:L
+L;E1,1
+&gt;136:L</code></pre>
 		<h3>Mapping Table</h3>
+		<button type="button" id="toggle-params" aria-expanded="false">Expand all</button>
 		<table class="mapping">
 			<thead>
 				<tr>
 					<th>Char</th>
 					<th>Title</th>
+					<th>Params</th>
+					<th>Examples</th>
+					<th>Description</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>A</td>
 					<td>Title block A</td>
+					<td></td>
+					<td><code>A</code></td>
+					<td><span class="title-word">TOROB<strong class="title-letter">A</strong>N</span></td>
 				</tr>
 				<tr>
 					<td>B</td>
 					<td>Title block B</td>
+					<td></td>
+					<td><code>B</code></td>
+					<td><span class="title-word">TORO<strong class="title-letter">B</strong>AN</span></td>
 				</tr>
 				<tr>
 					<td>C</td>
 					<td>Connection block</td>
+					<td></td>
+					<td><code>C</code></td>
+					<td>A block that connects to connectable objects.</td>
 				</tr>
 				<tr>
 					<td>D</td>
 					<td>Basic block</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-4-color">color</button>]</code>
+						<div id="param-4-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>).</div>
+					</td>
+					<td><code>D</code><br /><code>D4</code></td>
+					<td>A colored block to hold down buttons and gates.</td>
 				</tr>
 				<tr>
 					<td>E</td>
 					<td>Toro</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-eyes" aria-expanded="false" aria-controls="param-5-eyes">eyes</button>[,<button type="button" class="param-toggle param-player" aria-expanded="false" aria-controls="param-5-player">player</button>[,<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-5-color">color</button>]]]</code>
+						<div id="param-5-eyes" class="param-detail param-eyes" hidden><code>eyes</code>: Eye count: 0-8.
+							Default: 1.</div>
+						<div id="param-5-player" class="param-detail param-player" hidden><code>player</code>: Player
+							ID: 1-4; 0=unassigned. Default: 0.</div>
+						<div id="param-5-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>).</div>
+					</td>
+					<td><code>E</code><br /><code>E2</code><br /><code>E2,1</code><br /><code>E2,1,4</code></td>
+					<td>A playable character.</td>
 				</tr>
 				<tr>
 					<td>F</td>
 					<td>Fog</td>
+					<td></td>
+					<td><code>F</code></td>
+					<td>Fog boundary. Must be adjacent, no diagonals, to correctly split fog up into groups.</td>
 				</tr>
 				<tr>
 					<td>G</td>
 					<td>Toro goal</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-7-color">color</button>]</code>
+						<div id="param-7-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>).</div>
+					</td>
+					<td><code>G</code><br /><code>G4</code></td>
+					<td>Solved when a toro of the matching color is here.</td>
 				</tr>
 				<tr>
 					<td>H</td>
 					<td>Hazard land</td>
+					<td></td>
+					<td><code>H</code></td>
+					<td>Blocks all objects except toros.</td>
 				</tr>
 				<tr>
 					<td>I</td>
 					<td>Info</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-kind" aria-expanded="false" aria-controls="param-9-kind">kind</button>]</code>
+						<div id="param-9-kind" class="param-detail param-kind" hidden><code>kind</code>: 0=small
+							controls, 1=undo controls, 2=Toroban title, 3=big grass wall. Default: 0.</div>
+					</td>
+					<td><code>I</code><br /><code>I1</code></td>
+					<td>Displays controls help, and other sprites.</td>
 				</tr>
 				<tr>
 					<td>K</td>
 					<td>Checkpoint</td>
+					<td></td>
+					<td><code>K</code></td>
+					<td>Restart-immune area.</td>
 				</tr>
 				<tr>
 					<td>L</td>
 					<td>Land</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-11-biome">biome</button>]</code>
+						<div id="param-11-biome" class="param-detail param-biome" hidden><code>biome</code>: 1=grass,
+							2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+					</td>
+					<td><code>L</code><br /><code>L2</code></td>
+					<td>Sets land for both worlds. See &quot;diverged terrain&quot; below.</td>
 				</tr>
 				<tr>
 					<td>M</td>
 					<td>Mysterious</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-12-biome">biome</button>]</code>
+						<div id="param-12-biome" class="param-detail param-biome" hidden><code>biome</code>: 1=grass,
+							2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+					</td>
+					<td><code>M</code><br /><code>M2</code></td>
+					<td>??????</td>
 				</tr>
 				<tr>
 					<td>N</td>
 					<td>Title block N</td>
+					<td></td>
+					<td><code>N</code></td>
+					<td><span class="title-word">TOROBA<strong class="title-letter">N</strong></span></td>
 				</tr>
 				<tr>
 					<td>O</td>
-					<td>Title block O1</td>
+					<td>Title block O</td>
+					<td></td>
+					<td><code>O</code></td>
+					<td><span class="title-word">T<strong class="title-letter">O</strong>R<strong
+								class="title-letter">O</strong>BAN</span></td>
 				</tr>
 				<tr>
 					<td>P</td>
 					<td>Portal</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-15-biome">biome</button>]</code>
+						<div id="param-15-biome" class="param-detail param-biome" hidden><code>biome</code>: 1=grass,
+							2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+					</td>
+					<td><code>P</code><br /><code>P2</code></td>
+					<td>A teleporter that is grouped by biome and region.</td>
 				</tr>
 				<tr>
 					<td>Q</td>
 					<td>Region button</td>
+					<td></td>
+					<td><code>Q</code></td>
+					<td>Activates connected region(s).</td>
 				</tr>
 				<tr>
 					<td>R</td>
 					<td>Title block R</td>
+					<td></td>
+					<td><code>R</code></td>
+					<td><span class="title-word">TO<strong class="title-letter">R</strong>OBAN</span></td>
 				</tr>
 				<tr>
 					<td>S</td>
 					<td>Region gate</td>
+					<td></td>
+					<td><code>S</code></td>
+					<td>Controlled by solved status of connected region(s).</td>
 				</tr>
 				<tr>
 					<td>T</td>
 					<td>Title block T</td>
+					<td></td>
+					<td><code>T</code></td>
+					<td><span class="title-word"><strong class="title-letter">T</strong>OROBAN</span></td>
 				</tr>
 				<tr>
 					<td>U</td>
 					<td>Region block NW</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-20-color">color</button>[,<button type="button" class="param-toggle param-camera" aria-expanded="false" aria-controls="param-20-camera">camera</button>[,<button type="button" class="param-toggle param-ray" aria-expanded="false" aria-controls="param-20-ray">ray</button>[,<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-20-biome">biome</button>]]]]</code>
+						<div id="param-20-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>). Used to disambiguate region block pairing.</div>
+						<div id="param-20-camera" class="param-detail param-camera" hidden><code>camera</code>: Camera
+							zone: 0=off, 1=on. Default: 0.</div>
+						<div id="param-20-ray" class="param-detail param-ray" hidden><code>ray</code>: Pairing ray:
+							0=none, 1=NW, 2=NE, 3=SW, 4=SE. Default: 1 (NW).</div>
+						<div id="param-20-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=derive
+							from initial main-world terrain, 1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0.</div>
+					</td>
+					<td><code>U</code><br /><code>U4</code><br /><code>U4,1</code><br /><code>U4,1,2</code><br /><code>U4,1,2,6</code>
+					</td>
+					<td>A block that can emit a "region" from the northwest corner, when paired with at least one other
+						region block.</td>
 				</tr>
 				<tr>
 					<td>V</td>
 					<td>Region block SE</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-21-color">color</button>[,<button type="button" class="param-toggle param-camera" aria-expanded="false" aria-controls="param-21-camera">camera</button>[,<button type="button" class="param-toggle param-ray" aria-expanded="false" aria-controls="param-21-ray">ray</button>[,<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-21-biome">biome</button>]]]]</code>
+						<div id="param-21-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>). Used only to disambiguate region block pairing.
+						</div>
+						<div id="param-21-camera" class="param-detail param-camera" hidden><code>camera</code>: Camera
+							zone: 0=off, 1=on. Default: 0.</div>
+						<div id="param-21-ray" class="param-detail param-ray" hidden><code>ray</code>: Pairing ray:
+							0=none, 1=NW, 2=NE, 3=SW, 4=SE. Default: 4 (SE).</div>
+						<div id="param-21-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=derive
+							from initial main-world terrain, 1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0.</div>
+					</td>
+					<td><code>V</code><br /><code>V4</code><br /><code>V4,1</code><br /><code>V4,1,3</code><br /><code>V4,1,3,6</code>
+					</td>
+					<td>A block that can emit a "region" from the southeast corner, when paired with at least one other
+						region block.</td>
 				</tr>
 				<tr>
 					<td>W</td>
 					<td>Wall</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-22-biome">biome</button>]</code>
+						<div id="param-22-biome" class="param-detail param-biome" hidden><code>biome</code>: 1=grass,
+							2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+					</td>
+					<td><code>W</code><br /><code>W2</code></td>
+					<td>Sets wall for both worlds. See &quot;diverged terrain&quot; below.</td>
 				</tr>
 				<tr>
 					<td>X</td>
 					<td>X offset block</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-23-color">color</button>]</code>
+						<div id="param-23-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>).</div>
+					</td>
+					<td><code>X</code><br /><code>X4</code></td>
+					<td>A block that controls the active region&apos;s X-offset.</td>
 				</tr>
 				<tr>
 					<td>Y</td>
 					<td>Y offset block</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-24-color">color</button>]</code>
+						<div id="param-24-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>).</div>
+					</td>
+					<td><code>Y</code><br /><code>Y4</code></td>
+					<td>A block that controls the active region&apos;s Y-offset.</td>
 				</tr>
 				<tr>
 					<td>Z</td>
 					<td>Thick fog</td>
-				</tr>
-				<tr>
-					<td>0</td>
-					<td>Title block O0</td>
+					<td></td>
+					<td><code>Z</code></td>
+					<td>Denotes all fog in the fog group here as thick fog. This is fog that clears one tile at a time,
+						instead of freely clearing the whole group.</td>
 				</tr>
 				<tr>
 					<td>-</td>
 					<td>Color gate</td>
-				</tr>
-				<tr>
-					<td>,</td>
-					<td>Reserved: parameters</td>
-				</tr>
-				<tr>
-					<td>;</td>
-					<td>Reserved: token delim</td>
-				</tr>
-				<tr>
-					<td>:</td>
-					<td>Reserved: repeat delim</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-27-color">color</button>]</code>
+						<div id="param-27-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>).</div>
+					</td>
+					<td><code>-</code><br /><code>-4</code></td>
+					<td>Controlled by buttons of the same color.</td>
 				</tr>
 				<tr>
 					<td>!</td>
 					<td>Stuck detector</td>
+					<td></td>
+					<td><code>!</code></td>
+					<td>Shows the &quot;object stuck&quot; notification when an object enters this tile.</td>
 				</tr>
 				<tr>
 					<td>?</td>
 					<td>Sign</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-id" aria-expanded="false" aria-controls="param-32-id">id</button>]</code>
+						<div id="param-32-id" class="param-detail param-id" hidden><code>id</code>: Sign ID: 0-99.
+							Default: 0.</div>
+					</td>
+					<td><code>?</code><br /><code>?12</code></td>
+					<td>Signs the player can read.</td>
 				</tr>
 				<tr>
 					<td>'</td>
 					<td>Arrow hint</td>
+					<td></td>
+					<td><code>&apos;</code></td>
+					<td>Arrow pointing down</td>
 				</tr>
 				<tr>
 					<td>"</td>
 					<td>Arrow hint long</td>
+					<td></td>
+					<td><code>&quot;</code></td>
+					<td>Rightwards arrow</td>
 				</tr>
 				<tr>
 					<td>&lpar;</td>
 					<td>Collider</td>
+					<td></td>
+					<td><code>(</code></td>
+					<td>Invisible wall</td>
 				</tr>
 				<tr>
 					<td>#</td>
-					<td>Reserved: header/comment</td>
+					<td>Header/comment</td>
+					<td></td>
+					<td><code># Toroban WorldText v0</code><br /><code># comment</code></td>
+					<td>Header and comments</td>
 				</tr>
 				<tr>
 					<td>%</td>
 					<td>Diverged terrain</td>
+					<td>
+						<code><button type="button" class="param-toggle param-main" aria-expanded="false" aria-controls="param-37-main">main</button>,<button type="button" class="param-toggle param-alt" aria-expanded="false" aria-controls="param-37-alt">alt</button></code>
+						<div id="param-37-main" class="param-detail param-main" hidden><code>main</code>: Main-world
+							terrain. Required terrain token: ~ (water), L[biome] (land), or W[biome] (wall). Biome:
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+						<div id="param-37-alt" class="param-detail param-alt" hidden><code>alt</code>: Alternate-world
+							terrain. Required terrain token: ~ (water), L[biome] (land), or W[biome] (wall). Biome:
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+					</td>
+					<td><code>%L,~</code><br /><code>%W2,L3</code></td>
+					<td>Sets different terrain for the parallel worlds (main and alt).</td>
 				</tr>
 				<tr>
 					<td>^</td>
 					<td>Compass</td>
+					<td></td>
+					<td><code>^</code></td>
+					<td>Gives the player the ability to automatically navigate.</td>
 				</tr>
 				<tr>
 					<td>+</td>
 					<td>Color button</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-39-color">color</button>]</code>
+						<div id="param-39-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>).</div>
+					</td>
+					<td><code>+</code><br /><code>+4</code></td>
+					<td>Controls color gates.</td>
 				</tr>
 				<tr>
 					<td>=</td>
 					<td>Counting gate</td>
-				</tr>
-				<tr>
-					<td>&gt;</td>
-					<td>Reserved: repeat</td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-40-color">color</button>]</code>
+						<div id="param-40-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
+								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
+								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
+								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
+								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
+							(<span class="color-white">white</span>).</div>
+					</td>
+					<td><code>=</code><br /><code>=4</code></td>
+					<td>A group of adjacent counting gates of the same color, determines how many buttons of that color
+						must be pressed for that gate group to be solved.</td>
 				</tr>
 				<tr>
 					<td>~</td>
 					<td>Water</td>
+					<td></td>
+					<td><code>~</code></td>
+					<td>Sets water for both worlds. See &quot;diverged terrain&quot; below.</td>
+				</tr>
+				<tr>
+					<td>&gt;</td>
+					<td>Repeat</td>
+					<td>
+						<code><button type="button" class="param-toggle param-count" aria-expanded="false" aria-controls="param-41-count">count</button>:<button type="button" class="param-toggle param-data" aria-expanded="false" aria-controls="param-41-data">data</button></code>
+						<div id="param-41-count" class="param-detail param-count" hidden><code>count</code>: Required
+							number of consecutive tiles to fill; must fit within the remaining world dimensions.</div>
+						<div id="param-41-data" class="param-detail param-data" hidden><code>data</code>: Required
+							complete tile, including its terrain, objects, and modifiers separated by semicolons.</div>
+					</td>
+					<td><code>&gt;3:L</code><br /><code>&gt;3:L;D4</code></td>
+					<td>Repeats the entire tile, a specified number of times, left to right and down.</td>
+				</tr>
+				<tr>
+					<td>,</td>
+					<td>Parameter separator</td>
+					<td></td>
+					<td><code>E2,1</code></td>
+					<td>Separates params</td>
+				</tr>
+				<tr>
+					<td>;</td>
+					<td>Token separator</td>
+					<td></td>
+					<td><code>L;D;F</code></td>
+					<td>Separates terrain, objects, and modifiers for a tile.</td>
+				</tr>
+				<tr>
+					<td>:</td>
+					<td>Repeat separator</td>
+					<td></td>
+					<td><code>&gt;3:L</code></td>
+					<td>Separates a repeat count from the tile data.</td>
 				</tr>
 				<tr>
 					<td>$</td>
 					<td>$$$</td>
+					<td></td>
+					<td><code>$</code></td>
+					<td>$$$$$</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<footer>© 2019-2026 Hebert Games LLC</footer>
+	<script>
+		const paramButtons = [...document.querySelectorAll('.param-toggle')];
+		const toggleParams = document.getElementById('toggle-params');
+		paramButtons.forEach(button => button.addEventListener('click', () => {
+			setParamOpen(button, button.getAttribute('aria-expanded') !== 'true');
+			updateToggleParams();
+		}));
+		toggleParams.addEventListener('click', () => {
+			const open = toggleParams.getAttribute('aria-expanded') !== 'true';
+			paramButtons.forEach(button => setParamOpen(button, open));
+			updateToggleParams();
+		});
+
+		function setParamOpen(button, open) {
+			button.setAttribute('aria-expanded', open);
+			document.getElementById(button.getAttribute('aria-controls')).hidden = !open;
+		}
+
+		function updateToggleParams() {
+			const allOpen = paramButtons.every(button => button.getAttribute('aria-expanded') === 'true');
+			toggleParams.setAttribute('aria-expanded', allOpen);
+			toggleParams.textContent = allOpen ? 'Collapse all' : 'Expand all';
+		}
+	</script>
 </body>
 
 </html>
