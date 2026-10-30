@@ -36,7 +36,7 @@
 		<pre><code># Toroban WorldText v0
 size=16,16
 &gt;119:L
-L;E1,1
+L;E7,1,1
 &gt;136:L</code></pre>
 		<h3>Mapping Table</h3>
 		<button type="button" id="toggle-params" aria-expanded="false">Expand all</button>
@@ -91,19 +91,19 @@ L;E1,1
 					<td>E</td>
 					<td>Toro</td>
 					<td>
-						<code>[<button type="button" class="param-toggle param-eyes" aria-expanded="false" aria-controls="param-5-eyes">eyes</button>[,<button type="button" class="param-toggle param-player" aria-expanded="false" aria-controls="param-5-player">player</button>[,<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-5-color">color</button>]]]</code>
-						<div id="param-5-eyes" class="param-detail param-eyes" hidden><code>eyes</code>: Eye count: 0-8.
-							Default: 1.</div>
-						<div id="param-5-player" class="param-detail param-player" hidden><code>player</code>: Player
-							ID: 1-4; 0=unassigned. Default: 0.</div>
+						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-5-color">color</button>[,<button type="button" class="param-toggle param-eyes" aria-expanded="false" aria-controls="param-5-eyes">eyes</button>[,<button type="button" class="param-toggle param-player" aria-expanded="false" aria-controls="param-5-player">player</button>]]]</code>
 						<div id="param-5-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
 								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
 								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
 								class="color-red">red</span>, 5=<span class="color-magenta">magenta</span>, 6=<span
 								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
 							(<span class="color-white">white</span>).</div>
+						<div id="param-5-eyes" class="param-detail param-eyes" hidden><code>eyes</code>: Eye count: 0-8.
+							Default: 1.</div>
+						<div id="param-5-player" class="param-detail param-player" hidden><code>player</code>: Player
+							ID: 1-4; 0=unassigned. Default: 0.</div>
 					</td>
-					<td><code>E</code><br /><code>E2</code><br /><code>E2,1</code><br /><code>E2,1,4</code></td>
+					<td><code>E</code><br /><code>E4</code><br /><code>E4,2</code><br /><code>E4,2,1</code></td>
 					<td>A playable character.</td>
 				</tr>
 				<tr>
@@ -233,7 +233,12 @@ L;E1,1
 					<td>U</td>
 					<td>Region block NW</td>
 					<td>
-						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-20-color">color</button>[,<button type="button" class="param-toggle param-camera" aria-expanded="false" aria-controls="param-20-camera">camera</button>[,<button type="button" class="param-toggle param-ray" aria-expanded="false" aria-controls="param-20-ray">ray</button>[,<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-20-biome">biome</button>]]]]</code>
+						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-20-biome">biome</button>[,<button type="button" class="param-toggle param-ray" aria-expanded="false" aria-controls="param-20-ray">ray</button>[,<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-20-color">color</button>[,<button type="button" class="param-toggle param-camera" aria-expanded="false" aria-controls="param-20-camera">camera</button>]]]]</code>
+						<div id="param-20-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=derive
+							from initial main-world terrain, 1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0.</div>
+						<div id="param-20-ray" class="param-detail param-ray" hidden><code>ray</code>: Pairing ray:
+							0=none, 1=NW, 2=NE, 3=SW, 4=SE. Default: 1 (NW).</div>
 						<div id="param-20-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
 								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
 								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
@@ -242,13 +247,8 @@ L;E1,1
 							(<span class="color-white">white</span>). Used to disambiguate region block pairing.</div>
 						<div id="param-20-camera" class="param-detail param-camera" hidden><code>camera</code>: Camera
 							zone: 0=off, 1=on. Default: 0.</div>
-						<div id="param-20-ray" class="param-detail param-ray" hidden><code>ray</code>: Pairing ray:
-							0=none, 1=NW, 2=NE, 3=SW, 4=SE. Default: 1 (NW).</div>
-						<div id="param-20-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=derive
-							from initial main-world terrain, 1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
-							Default: 0.</div>
 					</td>
-					<td><code>U</code><br /><code>U4</code><br /><code>U4,1</code><br /><code>U4,1,2</code><br /><code>U4,1,2,6</code>
+					<td><code>U</code><br /><code>U6</code><br /><code>U6,2</code><br /><code>U6,2,4</code><br /><code>U6,2,4,1</code>
 					</td>
 					<td>A block that can emit a "region" from the northwest corner, when paired with at least one other
 						region block.</td>
@@ -257,7 +257,12 @@ L;E1,1
 					<td>V</td>
 					<td>Region block SE</td>
 					<td>
-						<code>[<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-21-color">color</button>[,<button type="button" class="param-toggle param-camera" aria-expanded="false" aria-controls="param-21-camera">camera</button>[,<button type="button" class="param-toggle param-ray" aria-expanded="false" aria-controls="param-21-ray">ray</button>[,<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-21-biome">biome</button>]]]]</code>
+						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-21-biome">biome</button>[,<button type="button" class="param-toggle param-ray" aria-expanded="false" aria-controls="param-21-ray">ray</button>[,<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-21-color">color</button>[,<button type="button" class="param-toggle param-camera" aria-expanded="false" aria-controls="param-21-camera">camera</button>]]]]</code>
+						<div id="param-21-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=derive
+							from initial main-world terrain, 1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0.</div>
+						<div id="param-21-ray" class="param-detail param-ray" hidden><code>ray</code>: Pairing ray:
+							0=none, 1=NW, 2=NE, 3=SW, 4=SE. Default: 4 (SE).</div>
 						<div id="param-21-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
 								class="color-black">black</span>, 1=<span class="color-blue">blue</span>, 2=<span
 								class="color-green">green</span>, 3=<span class="color-cyan">cyan</span>, 4=<span
@@ -267,13 +272,8 @@ L;E1,1
 						</div>
 						<div id="param-21-camera" class="param-detail param-camera" hidden><code>camera</code>: Camera
 							zone: 0=off, 1=on. Default: 0.</div>
-						<div id="param-21-ray" class="param-detail param-ray" hidden><code>ray</code>: Pairing ray:
-							0=none, 1=NW, 2=NE, 3=SW, 4=SE. Default: 4 (SE).</div>
-						<div id="param-21-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=derive
-							from initial main-world terrain, 1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
-							Default: 0.</div>
 					</td>
-					<td><code>V</code><br /><code>V4</code><br /><code>V4,1</code><br /><code>V4,1,3</code><br /><code>V4,1,3,6</code>
+					<td><code>V</code><br /><code>V6</code><br /><code>V6,3</code><br /><code>V6,3,4</code><br /><code>V6,3,4,1</code>
 					</td>
 					<td>A block that can emit a "region" from the southeast corner, when paired with at least one other
 						region block.</td>
@@ -382,23 +382,14 @@ L;E1,1
 					<td>Invisible wall</td>
 				</tr>
 				<tr>
-					<td>#</td>
-					<td>Header/comment</td>
-					<td></td>
-					<td><code># Toroban WorldText v0</code><br /><code># comment</code></td>
-					<td>Header and comments</td>
-				</tr>
-				<tr>
 					<td>%</td>
 					<td>Diverged terrain</td>
 					<td>
 						<code><button type="button" class="param-toggle param-main" aria-expanded="false" aria-controls="param-37-main">main</button>,<button type="button" class="param-toggle param-alt" aria-expanded="false" aria-controls="param-37-alt">alt</button></code>
 						<div id="param-37-main" class="param-detail param-main" hidden><code>main</code>: Main-world
-							terrain. Required terrain token: ~ (water), L[biome] (land), or W[biome] (wall). Biome:
-							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+							terrain.</div>
 						<div id="param-37-alt" class="param-detail param-alt" hidden><code>alt</code>: Alternate-world
-							terrain. Required terrain token: ~ (water), L[biome] (land), or W[biome] (wall). Biome:
-							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+							terrain.</div>
 					</td>
 					<td><code>%L,~</code><br /><code>%W2,L3</code></td>
 					<td>Sets different terrain for the parallel worlds (main and alt).</td>
@@ -449,14 +440,21 @@ L;E1,1
 					<td>Sets water for both worlds. See &quot;diverged terrain&quot; below.</td>
 				</tr>
 				<tr>
+					<td>#</td>
+					<td>Header/comment</td>
+					<td></td>
+					<td><code># Toroban WorldText v0</code><br /><code># comment</code></td>
+					<td>Header and comments</td>
+				</tr>
+				<tr>
 					<td>&gt;</td>
 					<td>Repeat</td>
 					<td>
 						<code><button type="button" class="param-toggle param-count" aria-expanded="false" aria-controls="param-41-count">count</button>:<button type="button" class="param-toggle param-data" aria-expanded="false" aria-controls="param-41-data">data</button></code>
-						<div id="param-41-count" class="param-detail param-count" hidden><code>count</code>: Required
-							number of consecutive tiles to fill; must fit within the remaining world dimensions.</div>
-						<div id="param-41-data" class="param-detail param-data" hidden><code>data</code>: Required
-							complete tile, including its terrain, objects, and modifiers separated by semicolons.</div>
+						<div id="param-41-count" class="param-detail param-count" hidden><code>count</code>: Total
+							number of times to repeat this tile.</div>
+						<div id="param-41-data" class="param-detail param-data" hidden><code>data</code>: Tile data
+							which includes any terrain, objects, and modifiers separated by semicolons.</div>
 					</td>
 					<td><code>&gt;3:L</code><br /><code>&gt;3:L;D4</code></td>
 					<td>Repeats the entire tile, a specified number of times, left to right and down.</td>
@@ -465,7 +463,7 @@ L;E1,1
 					<td>,</td>
 					<td>Parameter separator</td>
 					<td></td>
-					<td><code>E2,1</code></td>
+					<td><code>E4,2</code></td>
 					<td>Separates params</td>
 				</tr>
 				<tr>
