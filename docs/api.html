@@ -68,8 +68,13 @@ L;E7,1,1
 				<tr>
 					<td>C</td>
 					<td>Connection block</td>
-					<td></td>
-					<td><code>C</code></td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-3-biome">biome</button>]</code>
+						<div id="param-3-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=auto,
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0 (auto).</div>
+					</td>
+					<td><code>C</code><br /><code>C2</code></td>
 					<td>A block that connects to connectable objects.</td>
 				</tr>
 				<tr>
@@ -101,7 +106,7 @@ L;E7,1,1
 						<div id="param-5-eyes" class="param-detail param-eyes" hidden><code>eyes</code>: Eye count: 0-8.
 							Default: 1.</div>
 						<div id="param-5-player" class="param-detail param-player" hidden><code>player</code>: Player
-							ID: 1-4; 0=unassigned. Default: 0.</div>
+							ID: 1-4; 0=unassigned. Default: 0 (unassigned).</div>
 					</td>
 					<td><code>E</code><br /><code>E4</code><br /><code>E4,2</code><br /><code>E4,2,1</code></td>
 					<td>A playable character.</td>
@@ -141,7 +146,8 @@ L;E7,1,1
 					<td>
 						<code>[<button type="button" class="param-toggle param-kind" aria-expanded="false" aria-controls="param-9-kind">kind</button>]</code>
 						<div id="param-9-kind" class="param-detail param-kind" hidden><code>kind</code>: 0=small
-							controls, 1=undo controls, 2=Toroban title, 3=big grass wall. Default: 0.</div>
+							controls, 1=undo controls, 2=Toroban title, 3=big grass wall. Default: 0 (small
+							controls).</div>
 					</td>
 					<td><code>I</code><br /><code>I1</code></td>
 					<td>Displays controls help, and other sprites.</td>
@@ -169,8 +175,9 @@ L;E7,1,1
 					<td>Mysterious</td>
 					<td>
 						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-12-biome">biome</button>]</code>
-						<div id="param-12-biome" class="param-detail param-biome" hidden><code>biome</code>: 1=grass,
-							2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+						<div id="param-12-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=auto,
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0 (auto).</div>
 					</td>
 					<td><code>M</code><br /><code>M2</code></td>
 					<td>??????</td>
@@ -195,8 +202,9 @@ L;E7,1,1
 					<td>Portal</td>
 					<td>
 						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-15-biome">biome</button>]</code>
-						<div id="param-15-biome" class="param-detail param-biome" hidden><code>biome</code>: 1=grass,
-							2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert. Default: 1 (grass).</div>
+						<div id="param-15-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=auto,
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0 (auto).</div>
 					</td>
 					<td><code>P</code><br /><code>P2</code></td>
 					<td>A teleporter that is grouped by biome and region.</td>
@@ -204,8 +212,13 @@ L;E7,1,1
 				<tr>
 					<td>Q</td>
 					<td>Region button</td>
-					<td></td>
-					<td><code>Q</code></td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-16-biome">biome</button>]</code>
+						<div id="param-16-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=auto,
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0 (auto).</div>
+					</td>
+					<td><code>Q</code><br /><code>Q2</code></td>
 					<td>Activates connected region(s).</td>
 				</tr>
 				<tr>
@@ -218,8 +231,13 @@ L;E7,1,1
 				<tr>
 					<td>S</td>
 					<td>Region gate</td>
-					<td></td>
-					<td><code>S</code></td>
+					<td>
+						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-18-biome">biome</button>]</code>
+						<div id="param-18-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=auto,
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0 (auto).</div>
+					</td>
+					<td><code>S</code><br /><code>S2</code></td>
 					<td>Controlled by solved status of connected region(s).</td>
 				</tr>
 				<tr>
@@ -234,9 +252,9 @@ L;E7,1,1
 					<td>Region block NW</td>
 					<td>
 						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-20-biome">biome</button>[,<button type="button" class="param-toggle param-ray" aria-expanded="false" aria-controls="param-20-ray">ray</button>[,<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-20-color">color</button>[,<button type="button" class="param-toggle param-camera" aria-expanded="false" aria-controls="param-20-camera">camera</button>]]]]</code>
-						<div id="param-20-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=derive
-							from initial main-world terrain, 1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
-							Default: 0.</div>
+						<div id="param-20-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=auto,
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0 (auto).</div>
 						<div id="param-20-ray" class="param-detail param-ray" hidden><code>ray</code>: Pairing ray:
 							0=none, 1=NW, 2=NE, 3=SW, 4=SE. Default: 1 (NW).</div>
 						<div id="param-20-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
@@ -246,7 +264,7 @@ L;E7,1,1
 								class="color-yellow">yellow</span>, 7=<span class="color-white">white</span>. Default: 7
 							(<span class="color-white">white</span>). Used to disambiguate region block pairing.</div>
 						<div id="param-20-camera" class="param-detail param-camera" hidden><code>camera</code>: Camera
-							zone: 0=off, 1=on. Default: 0.</div>
+							zone: 0=off, 1=on. Default: 0 (off).</div>
 					</td>
 					<td><code>U</code><br /><code>U6</code><br /><code>U6,2</code><br /><code>U6,2,4</code><br /><code>U6,2,4,1</code>
 					</td>
@@ -258,9 +276,9 @@ L;E7,1,1
 					<td>Region block SE</td>
 					<td>
 						<code>[<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-21-biome">biome</button>[,<button type="button" class="param-toggle param-ray" aria-expanded="false" aria-controls="param-21-ray">ray</button>[,<button type="button" class="param-toggle param-color" aria-expanded="false" aria-controls="param-21-color">color</button>[,<button type="button" class="param-toggle param-camera" aria-expanded="false" aria-controls="param-21-camera">camera</button>]]]]</code>
-						<div id="param-21-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=derive
-							from initial main-world terrain, 1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
-							Default: 0.</div>
+						<div id="param-21-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=auto,
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0 (auto).</div>
 						<div id="param-21-ray" class="param-detail param-ray" hidden><code>ray</code>: Pairing ray:
 							0=none, 1=NW, 2=NE, 3=SW, 4=SE. Default: 4 (SE).</div>
 						<div id="param-21-color" class="param-detail param-color" hidden><code>color</code>: 0=<span
@@ -271,7 +289,7 @@ L;E7,1,1
 							(<span class="color-white">white</span>). Used only to disambiguate region block pairing.
 						</div>
 						<div id="param-21-camera" class="param-detail param-camera" hidden><code>camera</code>: Camera
-							zone: 0=off, 1=on. Default: 0.</div>
+							zone: 0=off, 1=on. Default: 0 (off).</div>
 					</td>
 					<td><code>V</code><br /><code>V6</code><br /><code>V6,3</code><br /><code>V6,3,4</code><br /><code>V6,3,4,1</code>
 					</td>
@@ -353,11 +371,14 @@ L;E7,1,1
 					<td>?</td>
 					<td>Sign</td>
 					<td>
-						<code>[<button type="button" class="param-toggle param-id" aria-expanded="false" aria-controls="param-32-id">id</button>]</code>
+						<code>[<button type="button" class="param-toggle param-id" aria-expanded="false" aria-controls="param-32-id">id</button>[,<button type="button" class="param-toggle param-biome" aria-expanded="false" aria-controls="param-32-biome">biome</button>]]</code>
 						<div id="param-32-id" class="param-detail param-id" hidden><code>id</code>: Sign ID: 0-99.
 							Default: 0.</div>
+						<div id="param-32-biome" class="param-detail param-biome" hidden><code>biome</code>: 0=auto,
+							1=grass, 2=ruins, 3=snow, 4=cosmic, 5=fall, 6=desert.
+							Default: 0 (auto).</div>
 					</td>
-					<td><code>?</code><br /><code>?12</code></td>
+					<td><code>?</code><br /><code>?12</code><br /><code>?12,2</code></td>
 					<td>Signs the player can read.</td>
 				</tr>
 				<tr>
